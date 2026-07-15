@@ -1,26 +1,22 @@
 name: CI
 
-on:
-  - push
-  - pull_request
+on: [push, pull_request]
 
 jobs:
   build-and-test:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - uses: actions/checkout@v4
 
-      - name: Set Up Java
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          distribution: temurin
+          java-version: 17
 
       - name: Compile
-        run: javac -d bin src/calculator/*.java
+        run: javac -d bin *.java
 
       - name: Run Tests
-        run: java -cp bin test.java
+        run: java -cp bin test
