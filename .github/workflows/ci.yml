@@ -23,4 +23,4 @@ jobs:
         run: javac -d bin src/calculator/*.java
 
       - name: Run Tests
-        run: java -cp bin calculator.test
+        run: java -cp bin test.java
