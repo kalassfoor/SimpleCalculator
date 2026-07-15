@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build-and-test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Set Up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Compile
+        run: javac -d bin src/calculator/*.java
+
+      - name: Run Tests
+        run: java -cp bin calculator.test
